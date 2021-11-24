@@ -7,6 +7,13 @@ from git import Repo
 import re
 import sys
 
+BOT_DISCLAIMER_MESSAGE = (
+    'This is an automated message from a bot trying to be '
+    "helpful.  If I'm mis-behaving, or if this message seems "
+    'to be wrong, please feel free to reach out to my owner, '
+    'jrosenth@chromium.org.')
+
+
 REVIEW_STRICTLY_DO_NOT_SUBMIT = -1
 REVIEW_PREFER_NOT_SUBMITTED = -1
 REVIEW_NEEDS_HUMAN_APPROVAL = 1
@@ -136,6 +143,8 @@ def main():
     c = repo.commit("HEAD")
     ret, msg = zephyr_get_review(c.message)
     print(msg)
+    print("\n")
+    print(BOT_DISCLAIMER_MESSAGE)
     return ret < 0
 
 
